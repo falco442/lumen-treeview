@@ -13,4 +13,4 @@
 |
 */
 
-$router->get('/', 'PostsController@populate');
+$router->get('/', 'PostsController@index');
