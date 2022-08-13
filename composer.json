@@ -6,7 +6,8 @@
         "laravel",
         "lumen",
         "tree",
-        "treeview"
+        "treeview",
+        "multilevel"
     ],
     "license": "MIT",
     "type": "project",
