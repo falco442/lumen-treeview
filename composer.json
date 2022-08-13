@@ -26,12 +26,14 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
-            "falco442\\": "lib"
+            "falco442\\": "lib",
+            "falco442\\Tests\\": "tests"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Tests\\": "tests/",
+            "falco442\\Tests\\": "tests"
         }
     },
     "scripts": {
