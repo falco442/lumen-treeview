@@ -1,7 +1,13 @@
 {
     "name": "falco442/lumen-treeview",
     "description": "Something to help manage tree data structures",
-    "keywords": ["framework", "laravel", "lumen", "tree", "treeview"],
+    "keywords": [
+        "framework",
+        "laravel",
+        "lumen",
+        "tree",
+        "treeview"
+    ],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -17,7 +23,8 @@
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
+            "Database\\Seeders\\": "database/seeders/",
+            "falco442\\": "lib"
         }
     },
     "autoload-dev": {
