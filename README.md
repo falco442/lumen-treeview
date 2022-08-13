@@ -43,6 +43,17 @@ This package is intended for generating a tree from flat data (array); it makes 
 You can call the function `getTree()` to an array of arrays (for example a collection got from Eloquent) like this:
 
 ```php
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Post;
+use falco442\Treeview;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
+class PostsController extends Controller
+{
     public function tree()
     {
         $posts = Post::all()->transform(function ($item) {
@@ -54,6 +65,7 @@ You can call the function `getTree()` to an array of arrays (for example a colle
 
         return \response()->json(Treeview::getTree($posts));
     }
+}
 ```
 
 ### Get single node tree
@@ -63,6 +75,17 @@ as parameter
 ID:
 
 ```php
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Post;
+use falco442\Treeview;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
+class PostsController extends Controller
+{
     public function tree()
     {
         $posts = Post::all()->transform(function ($item) {
@@ -74,4 +97,5 @@ ID:
 
         return \response()->json(Treeview::getTree($posts, 101));
     }
+}
 ```
