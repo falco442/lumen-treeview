@@ -11,7 +11,7 @@ class Treeview
      *
      * @return array
      */
-    public static function getTree(array $array, $parentIdField = 'parent_id', $idField = 'id', $childrenField = 'children')
+    public static function getTree(array $array, string $parentIdField = 'parent_id', string $idField = 'id', string $childrenField = 'children')
     {
         $roots = (new Collection($array))->filter(function ($root) use ($parentIdField) {
             return $root[$parentIdField] === null;
@@ -27,7 +27,7 @@ class Treeview
      *
      * @return array
      */
-    public static function getNode(array &$array, $id = null, $parentIdField = 'parent_id', $idField = 'id', $childrenField = 'children', $node = null)
+    public static function getNode(array &$array, $id = null, string $parentIdField = 'parent_id', string $idField = 'id', string $childrenField = 'children', $node = null)
     {
         $collection = new Collection($array);
         $nodeKey = 0;
