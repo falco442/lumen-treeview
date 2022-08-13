@@ -1,10 +1,18 @@
-# Lumen PHP Framework
+# falco442/lumen-treeview
 
 [![Total Downloads](https://img.shields.io/packagist/dt/falco442/lumen-treeview)](https://packagist.org/packages/falco442/lumen-treeview)
 [![Latest Stable Version](https://img.shields.io/packagist/v/falco442/lumen-treeview)](https://packagist.org/packages/falco442/lumen-treeview)
 [![License](https://img.shields.io/packagist/l/falco442/lumen-treeview)](https://packagist.org/packages/falco442/lumen-treeview)
 
 This package is intended for generating a tree from flat data (array); it makes use of the class `Illuminate\Support\Collection`, so is intended for Lumen/Laravel projects.
+
+# Requirements
+
+- PHP >= 8.0
+- OpenSSL PHP Extension
+- PDO PHP Extension
+- Mbstring PHP Extension
+- laravel/lumen-framework >= 9.0
 
 # Parameters
 
