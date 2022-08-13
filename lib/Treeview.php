@@ -6,6 +6,11 @@ use Illuminate\Support\Collection;
 
 class Treeview
 {
+    /**
+     * Create a new tree from an array of arrays; Returns the array of roots, with each tree attached
+     *
+     * @return array
+     */
     public static function getTree(array $array, $parentIdField = 'parent_id', $idField = 'id', $childrenField = 'children')
     {
         $roots = (new Collection($array))->filter(function ($root) use ($parentIdField) {
@@ -17,6 +22,11 @@ class Treeview
         return array_values($tree->toArray());
     }
 
+    /**
+     * Create a tree relative to a node, attaching the tree to the node
+     *
+     * @return array
+     */
     public static function getNode(array &$array, $id = null, $parentIdField = 'parent_id', $idField = 'id', $childrenField = 'children', $node = null)
     {
         $collection = new Collection($array);
