@@ -55,13 +55,13 @@ class PostsController extends Controller
 
     private function getTree(array $array, $parentIdField = 'parent_id', $idField = 'id', $childrenField = 'children')
     {
-        $roots = (new Collection($array))->filter(function ($root) use ($idField) {
-            return $root[$idField] === null;
+        $roots = (new Collection($array))->filter(function ($root) use ($parentIdField) {
+            return $root[$parentIdField] === null;
         });
         $tree = $roots->map(function ($root) use ($array, $idField, $childrenField, $parentIdField) {
             return $this->getNode($array, null, $parentIdField, $idField, $childrenField, $root);
         });
-        return $tree->toArray();
+        return array_values($tree->toArray());
     }
 
     private function getNode(array &$array, $id = null, $parentIdField = 'parent_id', $idField = 'id', $childrenField = 'children', $node = null)
@@ -90,13 +90,5 @@ class PostsController extends Controller
             return $n;
         })->toArray();
         return $node;
-    }
-
-    public function show($data)
-    {
-        echo '<pre>';
-        print_r($data);
-        echo '</pre>';
-//        die();
     }
 }
