@@ -16,7 +16,7 @@ This package is intended for generating a tree from flat data (array); it makes 
 
 # Installation
 
-from command line, run the command
+from command line, in the root folder of your Laravel/Lumen project, run the command
 
 ```
 composer require falco442/lumen-treeview
