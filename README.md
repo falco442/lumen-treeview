@@ -14,6 +14,14 @@ This package is intended for generating a tree from flat data (array); it makes 
 - Mbstring PHP Extension
 - laravel/lumen-framework >= 9.0
 
+# Installation
+
+from command line, run the command
+
+```
+composer require falco442/lumen-treeview
+```
+
 # Parameters
 
 ### Static method `getTree()`
