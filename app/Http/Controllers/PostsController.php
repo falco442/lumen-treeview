@@ -50,10 +50,21 @@ class PostsController extends Controller
             return $item;
         })->toArray();
 
-        return \response()->json($this->getNode($posts, 224));
+        return \response()->json($this->getTree($posts));
     }
 
-    private function getNode(array &$array, $id, $parentIdField = 'parent_id', $idField = 'id', $childrenField = 'children', $node = null, $firstIteration = false)
+    private function getTree(array $array, $parentIdField = 'parent_id', $idField = 'id', $childrenField = 'children')
+    {
+        $roots = (new Collection($array))->filter(function ($root) use ($idField) {
+            return $root[$idField] === null;
+        });
+        $tree = $roots->map(function ($root) use ($array, $idField, $childrenField, $parentIdField) {
+            return $this->getNode($array, null, $parentIdField, $idField, $childrenField, $root);
+        });
+        return $tree->toArray();
+    }
+
+    private function getNode(array &$array, $id = null, $parentIdField = 'parent_id', $idField = 'id', $childrenField = 'children', $node = null)
     {
         $collection = new Collection($array);
         $nodeKey = 0;
@@ -74,8 +85,8 @@ class PostsController extends Controller
         $children = array_values($children->toArray());
         $array = array_values($array->toArray());
 
-        $node[$childrenField] = (new Collection($children))->map(function ($n) use (&$array, $parentIdField, $idField, $childrenField, $node, $firstIteration) {
-            $n = $this->getNode($array, $n[$idField], $parentIdField, $idField, $childrenField, $n, false);
+        $node[$childrenField] = (new Collection($children))->map(function ($n) use (&$array, $parentIdField, $idField, $childrenField, $node) {
+            $n = $this->getNode($array, $n[$idField], $parentIdField, $idField, $childrenField, $n);
             return $n;
         })->toArray();
         return $node;
