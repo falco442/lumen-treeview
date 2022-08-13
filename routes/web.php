@@ -13,4 +13,4 @@
 |
 */
 
-$router->get('/', 'PostsController@index');
+$router->get('/', 'PostsController@tree');
