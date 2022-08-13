@@ -7,27 +7,41 @@ use Tests\TestCase;
 
 class TreeviewTest extends TestCase
 {
-    public function testGetTree()
+
+    public function __construct(?string $name = null, array $data = [], $dataName = '')
     {
-        $arr = [
+        parent::__construct($name, $data, $dataName);
+        $this->arr = [
             ['id' => 1, 'parent_id' => null],
             ['id' => 2, 'parent_id' => 1]
         ];
-        $this->assertIsArray($arr, 'Value is not an array');
-        foreach ($arr as $key => $item) {
-            $this->assertIsArray($item, 'Item is not an array');
-            $this->assertArrayHasKey('id', $item, 'Array has not key \'id\'');
-            $this->assertArrayHasKey('parent_id', $item, 'Array has not key \'parent_id\'');
-        }
+    }
 
+    public function testGetTree()
+    {
+        $arr = $this->arr;
         $newArr = Treeview::getTree($arr);
-        $this->assertIsArray($arr, '$newArr is not an array');
-
-        foreach ($newArr as $key => $item) {
-            $this->assertIsArray($item, 'Item is not an array');
-            $this->assertArrayHasKey('id', $item, 'Array has not key \'id\'');
-            $this->assertArrayHasKey('children', $item, 'Array has not key \'parent_id\'');
-            $this->assertIsArray($item['children'], 'Children are not array');
+        foreach ($newArr as $item) {
+            $this->testNode($item);
         }
+    }
+
+    private function testNode($node)
+    {
+        $this->assertIsArray($node, 'Node is not an array');
+        $this->assertArrayHasKey('id', $node, 'Node has not key \'id\'');
+        $this->assertArrayHasKey('parent_id', $node, 'Node has not key \'parent_id\'');
+        $this->assertArrayHasKey('children', $node, 'Node has not key \'parent_id\'');
+        $this->assertIsArray($node['children'], '$newArr is not an array');
+        foreach ($node['children'] as $newNode) {
+            $this->testNode($newNode);
+        }
+    }
+
+    public function testGetNode()
+    {
+        $arr = $this->arr;
+        $newArr = Treeview::getNode($arr, 1);
+        $this->testNode($newArr);
     }
 }
