@@ -35,14 +35,14 @@ composer require falco442/lumen-treeview
 
 ### Static method `getNode()`
 
-| name             | type               | default value   | description                                                                                                             |
-|------------------|--------------------|-----------------|-------------------------------------------------------------------------------------------------------------------------|
-| `$array`         | array              | none. required. | this is the array to pass. **Is taken by reference**                                                                    |
-| `'$id'`          | string \|\| number | none. required. | The id of the node to take for which construct the tree                                                                 |
+| name           | type               | default value   | description                                                                                                             |
+|----------------|--------------------|-----------------|-------------------------------------------------------------------------------------------------------------------------|
+| `$array`       | array              | none. required. | this is the array to pass. **Is taken by reference**                                                                    |
+| `'$id'`        | string \|\| number | none. required. | The id of the node to take for which construct the tree                                                                 |
 | `$parentIdField` | string             | `'parent_id'`   | the name for the parent field with which is constructed the relation                                                    |
-| `$idField`       | string             | `'id'`          | the name for the main field of the array, usually the primary key of the table from which data are taken                |
+| `$idField`     | string             | `'id'`          | the name for the main field of the array, usually the primary key of the table from which data are taken                |
 | `$childrenField` | string             | `'children'`    | the name for the field which to put the children in, in the returned tree                                               |
-| `'$node'`        | array              | null            | The node instance to pass to the method. **optional**, and not to be used to construct the tree. **Internal use only.** |
+| `$node`        | array              | null            | The node instance to pass to the method. **optional**, and not to be used to construct the tree. **Internal use only.** |
 
 ## Usage
 
