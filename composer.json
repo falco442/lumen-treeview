@@ -1,6 +1,7 @@
 {
     "name": "falco442/lumen-treeview",
     "description": "Something to help manage tree data structures",
+    "homepage": "https://falco442.github.io/lumen-treeview/",
     "keywords": [
         "framework",
         "laravel",
