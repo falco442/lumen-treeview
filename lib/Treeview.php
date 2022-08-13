@@ -27,7 +27,7 @@ class Treeview
      *
      * @return array
      */
-    public static function getNode(array &$array, $id = null, string $parentIdField = 'parent_id', string $idField = 'id', string $childrenField = 'children', $node = null)
+    public static function getNode(array &$array, string|int $id = null, string $parentIdField = 'parent_id', string $idField = 'id', string $childrenField = 'children', $node = null)
     {
         $collection = new Collection($array);
         $nodeKey = 0;
