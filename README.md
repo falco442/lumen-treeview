@@ -4,7 +4,7 @@
 [![Latest Stable Version](https://img.shields.io/packagist/v/falco442/lumen-treeview)](https://packagist.org/packages/falco442/lumen-treeview)
 [![License](https://img.shields.io/packagist/l/falco442/lumen-treeview)](https://packagist.org/packages/falco442/lumen-treeview)
 
-This package is intended for generating a tree from flat data (array); it makes use of the class `Illuminate\Support\Collection`, so is intended for Lumen/Laravel projects.
+This package is intended for generating a tree structure from flat data (array); it makes use of the class `Illuminate\Support\Collection`, so is intended for Lumen/Laravel projects.
 
 # Requirements
 
