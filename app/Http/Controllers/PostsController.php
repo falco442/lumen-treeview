@@ -46,24 +46,39 @@ class PostsController extends Controller
             }
             return $item;
         })->toArray();
-        $node = $this->getNode($posts, 201);
+        $node = $this->getNode($posts, 224);
         $this->show($node);
-        return \response()->json($this->getNode($posts, 201));
+//        return \response()->json($this->getNode($posts, 224));
     }
 
-    private function getNode(array &$array, $id, $parentIdField = 'parent_id', $idField = 'id', $childrenField = 'children') {
+    private function getNode(array &$array, $id, $parentIdField = 'parent_id', $idField = 'id', $childrenField = 'children', $node = null, $firstIteration = true) {
         $collection = new Collection($array);
-        $node = $collection->first(function($item) use ($idField, $id) {
-            return $item[$idField] = $id;
-        });
+        $nodeKey = 0;
+        if (!$node) {
+            $node = $collection->first(function($item, $key) use ($idField, $id, &$nodeKey) {
+                $nodeKey = $key;
+                return $item[$idField] === $id;
+            });
+            $collection->forget($nodeKey);
+        }
+
+
         [$children, $array] = $collection->partition(function($item) use ($parentIdField, $id) {
             return $item[$parentIdField] === $id;
         });
+
+
         $children = array_values($children->toArray());
-        $array = $array->toArray();
+        $array = array_values($array->toArray());
         $node[$childrenField] = $children;
-        (new Collection($children))->each(function($node) use ($array, $parentIdField, $idField, $childrenField) {
-            $this->getNode($array, $node[$idField], $parentIdField, $idField, $childrenField);
+
+//        if (!$firstIteration) {
+//            $this->show($node);
+//        }
+
+        (new Collection($children))->map(function($n) use (&$array, $parentIdField, $idField, $childrenField, $node) {
+            $n = $this->getNode($array, $n[$idField], $parentIdField, $idField, $childrenField, $n, false);
+            return $n;
         });
         return $node;
     }
