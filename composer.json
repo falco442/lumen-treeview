@@ -10,7 +10,7 @@
         "multilevel"
     ],
     "license": "MIT",
-    "type": "project",
+    "type": "library",
     "require": {
         "php": "^8.0",
         "laravel/lumen-framework": "^9.0"
